@@ -2,8 +2,6 @@ from pytube import Playlist, YouTube
 import os
 import time
 
-root_path = f"D:\FUN\MUSIC\EasyTube"
-
 def youtube(url):
     yt = YouTube(url)
     if not os.path.exists(f"{root_path}"):
@@ -50,6 +48,7 @@ def playlist(url):
         c -= 1
 
 url = input("Enter URL: ")
+root_path = "D:\Audio\EasyTube"
 
 while not "youtube.com" in url:
     url = input("Enter URL: ")
