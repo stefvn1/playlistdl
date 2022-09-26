@@ -4,10 +4,10 @@ import time
 
 def youtube(url):
     yt = YouTube(url)
-    if not os.path.exists(f"{root_path}"):
-        os.makedirs(f"{root_path}")
-    os.chdir(f"{root_path}")
-    title = yt.title
+    if not os.path.exists(root_path):
+        os.makedirs(root_path)
+    os.chdir(root_path)
+    title = yt.title.replace(".", "")
     if not os.path.exists(f"{root_path}\{title}.mp3"):
         print(f"Downloading: {title}")
         try:
@@ -19,7 +19,7 @@ def youtube(url):
             print("Done")
         except Exception:
             print(f"Something went wrong")
-            os.remove(f"{file_name}{ext}")
+            os.remove(file)
     else: print(f"{title}.mp3 already exists")
 
 def playlist(url):
@@ -30,10 +30,8 @@ def playlist(url):
     os.chdir(f"{root_path}\{p.title}")
     print(f"Downloading: {p.title}")
     for video in p.videos:
-        print(f"{c} items remaining")
-        title = video.title
+        title = video.title.replace(".", "")
         if not os.path.exists(f"{root_path}\{p.title}\{title}.mp3"):
-            print(f"Downloading: {title}")
             try:
                 audio = video.streams.filter(only_audio=True).first()
                 file = audio.download()
@@ -43,7 +41,7 @@ def playlist(url):
                 print(f"{title} downloaded")
             except Exception:
                 print(f"Something went wrong")
-                os.remove(f"{file_name}{ext}")
+                os.remove(file)
         else: print(f"{title}.mp3 already exists")
         c -= 1
 
