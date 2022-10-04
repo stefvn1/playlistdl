@@ -2,7 +2,6 @@ from threading import Thread
 import time
 from pytube import Playlist, YouTube
 import os
-import traceback
 
 dl_dir = "D:\Audio\EasyTube"
 chars = '"\\/|:?*'
